@@ -12,26 +12,14 @@ import NewsItem from "./NewsItem.vue";
 var localhost = "http://127.0.0.1:80";
 export default {
   name: "News",
-  data() {
-    return {
-      news: [],
-    };
-  },
   components:{
       NewsItem
   },
-  mounted() {
-    
-    this.$store.commit('showProgressBar');
-    axios
-      .get(`${localhost}/news/`)
-      .then((res)=>{
-        this.news = res.data;
-        this.$store.commit('hideProgressBar');
-        
-        
-      })
-      .catch((err) => console.log(err));
+  props: {
+    news: {
+      type: Array,
+      required: true,
+    },
   },
 };
 </script>
