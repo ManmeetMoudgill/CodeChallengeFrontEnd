@@ -3,7 +3,7 @@
         <div class="absolute bottom-2 right-4">
             <span class="text-black">{{formatDate(data.publishedAt)}}</span>
         </div>
-      <img  :src="data.urlToImage" class=" group-hover:scale-105 group-hover:rotate-1 transform transition-all delay-250 card-img-top h-56 object-cover" alt="..." />
+      <img  :src="data.urlToImage?data.urlToImage:'https://image.shutterstock.com/image-vector/breaking-news-background-planet-260nw-667420906.jpgD'" class=" group-hover:scale-105 group-hover:rotate-1 transform transition-all delay-250 card-img-top h-56 object-cover" alt="..." />
       <div class="card-body">
         <h5 class="card-title font-bold h-12  mb-3">{{data.title.substring(0,100)}}...</h5>
         <p class="card-text mb-3 h-20 overflow-hidden">

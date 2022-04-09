@@ -1,8 +1,8 @@
 
 <template>
   <div>
-    <Header/>
     <ProgressBar v-if="this.$store.state.isActive"/>
+    <Header/>
     <div class="container pt-4">
       <Home/>
     </div>
