@@ -12,7 +12,7 @@
         </li>
       </ul>
       <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <input v-on:keyup="changeSearch" v-model="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
@@ -21,12 +21,31 @@
 </template>
 
 <script>
+import axios from "axios";
+const baseUrl = "http://127.0.0.1:80";
 export default {
     name:'Header',
     data() {
         return {
-            main:""
+            search:""
         }
+    },
+    methods: {
+      changeSearch(){
+        if(this.search.length>=3){
+          axios
+         .get(`${baseUrl}/news?&page=${this.pageNumber}&q=${this.search}`)
+         .then((res) => {
+           
+           console.log(this.news=res.data.news);
+           console.log(this.totalNews=res.data.totalArticles);
+         })
+         .catch((err) => {
+           console.log(err);
+         });
+
+        }
+      }
     },
 }
 </script>

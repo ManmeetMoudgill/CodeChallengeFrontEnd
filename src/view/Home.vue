@@ -57,8 +57,8 @@ export default {
       axios
         .get(`${baseUrl}/news?orderByTitle=${this.OrderByTitle}&page=${this.pageNumber}`)
         .then((res) => {
-          console.log(res.data.news);
-          this.news=res.data.news;
+          
+           this.news=res.data.news;
           this.totalNews=res.data.totalArticles;
         })
         .catch((err) => {
