@@ -32,19 +32,7 @@ export default {
     },
     methods: {
       changeSearch(){
-        if(this.search.length>=3){
-          axios
-         .get(`${baseUrl}/news?&page=${this.pageNumber}&q=${this.search}`)
-         .then((res) => {
-           
-           console.log(this.news=res.data.news);
-           console.log(this.totalNews=res.data.totalArticles);
-         })
-         .catch((err) => {
-           console.log(err);
-         });
-
-        }
+        this.$store.dispatch("search", {search:this.search});
       }
     },
 }

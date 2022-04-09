@@ -2,6 +2,7 @@
   <div class="container">
     <div class="flex justify-between items-center">
       <h2 class="text-5xl">News</h2>
+      
       <form action="" class="flex items-center">
         <label class="text-base" for="orderByTitle">Ordina per titolo</label>
         <input
@@ -14,19 +15,19 @@
         />
       </form>
     </div>
-    <News :news="news" />
+    <News :news="this.$store.state.news" />
     <div class="flex justify-between items-center mb-3">
       <button
-      :disabled="pageNumber==1"
-        v-on:click="previous"
+      :disabled="this.$store.state.pageNumber==1"
+        v-on:click="previousPage"
         class="mt-4 py-2 px-4 text-white text-center rounded-md shadow-md bg-blue-600 hover:bg-blue-500 transition-all delay-150"
       >
         Previous
       </button>
       
       <button
-        :disabled="pageNumber+1 > Math.ceil(totalNews/20)"
-        v-on:click="next"
+        :disabled="this.$store.state.pageNumber+1 > Math.ceil(this.$store.state.totalNews/20)"
+        v-on:click="nextPage"
         class="mt-4 py-2 px-4 text-white text-center rounded-md shadow-md bg-blue-600 hover:bg-blue-500 transition-all delay-150"
       >
         Next
@@ -38,7 +39,6 @@
 <script>
 const baseUrl = "http://127.0.0.1:80";
 import News from "../components/News.vue";
-import axios from "axios";
 export default {
   name: "Home",
   components: {
@@ -47,46 +47,23 @@ export default {
   data() {
     return {
       OrderByTitle: "",
-      news: [],
       pageNumber: 1,
       totalNews:null,
     };
   },
   methods: {
     OrderByTitleChanged() {
-      axios
-        .get(`${baseUrl}/news?orderByTitle=${this.OrderByTitle}&page=${this.pageNumber}`)
-        .then((res) => {
-          
-           this.news=res.data.news;
-          this.totalNews=res.data.totalArticles;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      this.$store.dispatch("ordinePerTitolo", {orderByTitle:this.OrderByTitle});
     },
-    next() {
-      this.pageNumber++;
-      this.getData(this.pageNumber);
+    nextPage(){
+      this.$store.dispatch("next");
     },
-    previous() {
-      this.pageNumber--;
-      this.getData(this.pageNumber);
-    },
-    getData(pageNumber=1) {
-      this.$store.commit("showProgressBar");
-      axios
-        .get(`${baseUrl}/news?page=${pageNumber}`)
-        .then((res) => {
-          this.news = res.data.news;
-          this.totalNews=res.data.totalArticles;
-          this.$store.commit("hideProgressBar");
-        })
-        .catch((err) => console.log(err));
+    previousPage() {
+      this.$store.dispatch("previous");
     },
   },
   mounted() {
-    this.getData(this.pageNumber);
+    this.$store.dispatch("getNews");
   },
 };
 </script>

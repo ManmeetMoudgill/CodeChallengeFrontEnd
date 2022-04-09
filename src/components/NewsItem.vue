@@ -5,9 +5,9 @@
         </div>
       <img  :src="data.urlToImage?data.urlToImage:'https://image.shutterstock.com/image-vector/breaking-news-background-planet-260nw-667420906.jpgD'" class=" group-hover:scale-105 group-hover:rotate-1 transform transition-all delay-250 card-img-top h-56 object-cover" alt="..." />
       <div class="card-body">
-        <h5 class="card-title font-bold h-12  mb-3">{{data.title.substring(0,100)}}...</h5>
+        <h5 class="card-title font-bold h-12  mb-3">{{data.title && data.title.substring(0,100)}}...</h5>
         <p class="card-text mb-3 h-20 overflow-hidden">
-            {{data.description.substring(0,80)}}...
+            {{data.description && data.description.substring(0,80)}}...
         </p>
         <a :href="data.url" target="_blank" class=" mt-4 py-2 px-3 text-white text-center  rounded-md shadow-md bg-blue-600 hover:bg-blue-500 transition-all delay-150 ">Read more</a>
       </div>
