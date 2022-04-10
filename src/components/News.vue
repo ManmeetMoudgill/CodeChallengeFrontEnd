@@ -10,9 +10,9 @@
 </template>
 
 <script>
-import axios from "axios";
+
 import NewsItem from "./NewsItem.vue";
-var localhost = "http://127.0.0.1:80";
+
 export default {
   name: "News",
   components:{

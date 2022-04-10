@@ -1,11 +1,15 @@
 
 <template>
   <div>
+    
+
+  
     <ProgressBar v-if="this.$store.state.isActive"/>
     <Header/>
       <BreakingNews/>
     <div class="container pt-4">
-      <Home/>
+      <router-view />
+      
     </div>
   </div>
   

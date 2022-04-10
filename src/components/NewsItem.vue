@@ -17,7 +17,7 @@
         </p>
            
            
-        <a :href="data.url" target="_blank" class=" mt-4 py-2 px-3  text-center  rounded-md shadow-md bg-blue-600 hover:bg-white hover:text-blue-600  transition-all delay-150 ">Read more</a>
+        <router-link :to="{name:'SingleNews',params:{name:data.source.name}}"  class=" mt-4 py-2 px-3  text-center  rounded-md shadow-md bg-blue-600 hover:bg-white hover:text-blue-600  transition-all delay-150 ">Read more</router-link>
       </div>
     </div>
 </template>
