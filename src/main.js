@@ -56,8 +56,8 @@ const store = createStore({
       this.commit("showProgressBar");
       try {
         const news = await fetch(`${this.state.baseUrl}/news?page=${this.state.pageNumber}`);
-        const newsdDta = await news.json();
-        this.commit('getNews', newsdDta);
+        const newsdData = await news.json();
+        this.commit('getNews', newsdData);
         this.commit("hideProgressBar");
 
       } catch (err) {
@@ -87,11 +87,15 @@ const store = createStore({
 
     
     },async search(state,payload){
-      console.log(payload)
+      console.log(payload.search)
+      if(payload.search.length===0){
+        this.dispatch('getNews');
+      }
+      
       if(payload.search.length>=4){
         try{
           const dataGotFromBackend=await axios.get(`${this.state.baseUrl}/news?&page=${this.state.pageNumber}&q=${payload.search}`);
-          console.log(dataGotFromBackend)
+         
           this.commit('getNews', dataGotFromBackend.data);
 
         }catch(err){

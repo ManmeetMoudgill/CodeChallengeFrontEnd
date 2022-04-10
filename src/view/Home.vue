@@ -15,8 +15,14 @@
         />
       </form>
     </div>
-    <News :news="this.$store.state.news" />
-    <div class="flex justify-between items-center mb-3">
+    <News  :news="this.$store.state.news" />
+
+    <div class="flex justify-center" v-if="this.$store.state.news.length===0 && this.$store.state.isActive===false">
+            <h2 class="text-2xl font-bold">Sorry there,no news found</h2>
+            
+    </div>
+
+    <div v-if="this.$store.state.news.length!==0" class="flex justify-between items-center mb-3">
       <button
       :disabled="this.$store.state.pageNumber==1"
         v-on:click="previousPage"
