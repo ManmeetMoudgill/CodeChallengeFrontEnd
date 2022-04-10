@@ -79,6 +79,7 @@ const store = createStore({
 
       try{
         const newsGotBackFromDb=await axios.get(`${this.state.baseUrl}/news?orderByTitle=${payload.orderByTitle}&page=${this.state.pageNumber}`);
+        console.log(newsGotBackFromDb);
         this.commit('getNews', newsGotBackFromDb.data);
 
       }catch(err){

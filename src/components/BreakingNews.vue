@@ -20,7 +20,7 @@
 
 <script>
 import axios from "axios";
-const api_key="542fb2fcd67046a49a8fe3decdba32e0";
+const api_key="ee1863b127314e6e81ee0c4533da6f74";
 export default {
     name:"BreakingNews",
     data(){
