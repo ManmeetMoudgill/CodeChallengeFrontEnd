@@ -39,7 +39,7 @@
             class="w-4 h-4 rounded-md shadow-md"
             id="orderByTitle"
           />
-          <label class="form-check-label   ml-2 inline-block text-gray-800" for="orderByTitle">Ordina per titolo</label>
+          <label class="form-check-label   ml-2 inline-block text-gray-800" for="orderByTitle">Order by title</label>
         </div>
 
          
