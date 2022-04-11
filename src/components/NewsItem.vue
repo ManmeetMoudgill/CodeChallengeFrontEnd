@@ -19,7 +19,7 @@
            
            <div class="flex items-center justify-end">
                     <router-link :to="{name:'SingleNews',params:{name:data.source.name,author:data.author!=null?data.author:data.source.name}}"  class="">
-                        <img class="w-6 object-contain" src="../assets/more.png" alt="">
+                        <img class="w-6 hover:rotate-180 transform transition-all delay-100  object-contain" src="../assets/more.png" alt="">
                     </router-link>
            </div>
       </div>
