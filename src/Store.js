@@ -12,6 +12,7 @@ const store = createStore({
         baseUrl: "http://127.0.0.1:8080",
         news: [],
         totalNews: null,
+        newsSources:[],
       }
     },
     mutations: {
@@ -45,6 +46,13 @@ const store = createStore({
       previous(state) {
         state.pageNumber--;
       },
+      getSources(state,payload){
+        state.newsSources=payload.sources;
+      },
+      getNewBasedOnSource(state,payload){
+          state.news=payload.news;
+          state.totalNews=payload.totalArticles;
+      }
     },
     actions: {
       async getNews() {
@@ -53,6 +61,7 @@ const store = createStore({
           const news = await fetch(`${this.state.baseUrl}/news?page=${this.state.pageNumber}`);
           const newsdData = await news.json();
           this.commit('getNews', newsdData);
+          this.dispatch("getSources");
           this.commit("hideProgressBar");
   
         } catch (err) {
@@ -62,6 +71,7 @@ const store = createStore({
       },
       next() {
   
+        
         this.commit('next');
         this.dispatch('getNews');
       },
@@ -71,15 +81,15 @@ const store = createStore({
         this.dispatch('getNews');
       },
       async ordinePerTitolo(state,payload) {
-  
-        try{
-          const newsGotBackFromDb=await axios.get(`${this.state.baseUrl}/news?orderByTitle=${payload.orderByTitle}&page=${this.state.pageNumber}`);
-          console.log(newsGotBackFromDb);
-          this.commit('getNews', newsGotBackFromDb.data);
-  
-        }catch(err){
-          console.log(err);
+        if(payload.orderByTitle===true){
+          let filteredData=this.state.news;
+          filteredData.sort((a, b) => a.title.split(/\s+/)[0].replace(/[^a-zA-Z ]/g, "").localeCompare(b.title.split(/\s+/)[0].replace(/[^a-zA-Z ]/g, "")));
+
+        }else {
+          this.dispatch("getNews");
         }
+        
+        
   
       
       },async search(state,payload){
@@ -98,6 +108,32 @@ const store = createStore({
               console.log(err)
           }
         }
+      },
+      getSources(){
+        try{
+            let sourcesArray=[];
+            this.state.news.forEach((el)=>{
+            
+              if(el.source.name!=""){
+                sourcesArray.push(el.source.name);
+              }
+            })
+
+            this.commit('getSources',{sources:new Set(sourcesArray)});
+          }catch(err){
+              console.log(err);
+          }
+
+      },
+      async getNewBasedOnSource(state,payload){
+            const sourceName=payload.source;
+            try{
+              let newsFilteredBySource=await axios.get(`${this.state.baseUrl}/news/filteredBySource/${sourceName}?page=${this.state.pageNumber}&pageSize=20`);
+              this.commit('getNewBasedOnSource',newsFilteredBySource.data);
+            
+            }catch(err){
+              console.log(err)
+            }
       }
   
   

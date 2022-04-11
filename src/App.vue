@@ -1,9 +1,6 @@
 
 <template>
   <div>
-    
-
-  
     <ProgressBar v-if="this.$store.state.isActive"/>
     <Header/>
       <BreakingNews/>
@@ -35,6 +32,6 @@ export default {
     return {
       main: '',
     }
-  }
+  },
 }
 </script>

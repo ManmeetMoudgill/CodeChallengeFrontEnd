@@ -7,7 +7,7 @@
                 <li v-for="topNew in topNews" :key="topNew.title">
                     <p class="flex items-center">
                         <span class="customBgColor text-white font-bold px-2">{{formatDate(topNew.publishedAt)}}</span>
-                        <a target="_blank"  class="w-96 ml-2 text-sm hover:underline hover:text-black" :href="topNew.url">{{topNew.title.substring(0,60)}}</a>
+                        <a target="_blank"  class="w-96 overflow-x-hidden ml-2 text-sm hover:underline hover:text-black" :href="topNew.url">{{topNew.title.substring(0,50)}}</a>
                     </p>
                 </li>
             </ul>
