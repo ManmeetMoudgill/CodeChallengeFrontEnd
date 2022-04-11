@@ -20,7 +20,7 @@
 
 <script>
 import axios from "axios";
-const api_key="c3068f67ff714f9da80aee8dfe340d8b";
+const baseUrl="http://localhost:8080/news";
 export default {
     name:"BreakingNews",
     data(){
@@ -30,9 +30,9 @@ export default {
         }
     },mounted(){
 
-        axios.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${api_key}`).then((res)=>{
+        axios.get(`${baseUrl}/topHeadlines`).then((res)=>{
             
-            this.topNews=res.data.articles;
+            this.topNews=res.data.news;
             this.totalResults=res.data.totalResults;
             
         }).catch((err)=>console.log(err))
