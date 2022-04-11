@@ -66,7 +66,13 @@
     <img  
         v-if="this.$store.state.pageNumber !== 1" class=" w-4 mr-2 hover:scale-105 transition-all delay-100 transform hover:-translate-x-2 cursor-pointer"
         v-on:click="previousPage" src="../assets/arrow.png" alt="">
-    <img  
+    
+    
+
+    <img   v-if="
+          this.$store.state.pageNumber + 1 ===
+          Math.ceil(this.$store.state.totalNews / 20)
+        "
     class="cursor-pointer w-4 ml-2 hover:scale-105 transition-all delay-100 transform hover:translate-x-2"
         v-on:click="nextPage" src="../assets/right-arrow.png" alt="">
     
