@@ -3,7 +3,7 @@
     <div class="flex justify-between items-center">
       <h2 class="text-5xl">News</h2>
 
-      <form action="" class="flex items-center ">
+      <form action="" class="flex flex-col  ">
       
 
         
@@ -14,6 +14,7 @@
           >
               <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
               <option disabled value="">Filter by source</option>
+              <option  value="all">All</option>
               <option
                 
                 v-for="source in this.$store.state.newsSources" :key="source"
@@ -28,14 +29,14 @@
           </select>
         </div>
 
-        <div class="flex items-center ml-2 ">
+        <div class="flex items-center mt-2  ">
           
           <input
             type="checkbox"
             v-on:change="OrderByTitleChanged"
             v-model="OrderByTitle"
             name="orderByTitle"
-            class="ml-2 w-4 h-4 rounded-md shadow-md"
+            class="w-4 h-4 rounded-md shadow-md"
             id="orderByTitle"
           />
           <label class="form-check-label   ml-2 inline-block text-gray-800" for="orderByTitle">Ordina per titolo</label>
@@ -103,9 +104,11 @@ export default {
     },
     nextPage() {
       this.$store.dispatch("next");
+      window.scrollTo(0, 0);
     },
     previousPage() {
       this.$store.dispatch("previous");
+      window.scrollTo(0, 0);
     },
     sourceChanged(event){
      this.$store.dispatch("getNewBasedOnSource",{
