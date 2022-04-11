@@ -20,7 +20,7 @@
 
 <script>
 import axios from "axios";
-const baseUrl="http://localhost:8080/news";
+
 export default {
     name:"BreakingNews",
     data(){
@@ -30,7 +30,7 @@ export default {
         }
     },mounted(){
 
-        axios.get(`${baseUrl}/topHeadlines`).then((res)=>{
+        axios.get(`${this.$store.state.baseUrl}/news/topHeadlines`).then((res)=>{
             
             this.topNews=res.data.news;
             this.totalResults=res.data.totalResults;
