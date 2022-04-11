@@ -1,6 +1,6 @@
 <template>
     <div class="group  relative my-4 rounded-xl shadow-md  overflow-hidden transition-all delay-150 transform ">
-        <div class="absolute bottom-2 right-4 flex flex-col">
+        <div class="absolute bottom-2 left-4 flex flex-col">
             <span class="text-black font-medium">{{formatDate(data.publishedAt)}}</span>
             <span class="text-base font-medium  z-50 text-black">{{data.author}}</span>
         </div>
@@ -17,7 +17,11 @@
         </p>
            
            
-        <router-link :to="{name:'SingleNews',params:{name:data.source.name,author:data.author!=null?data.author:data.source.name}}"  class=" mt-4 py-2 px-3  text-center  rounded-md shadow-md bg-blue-600 hover:bg-white hover:text-blue-600  transition-all delay-150 ">Read more</router-link>
+           <div class="flex items-center justify-end">
+                    <router-link :to="{name:'SingleNews',params:{name:data.source.name,author:data.author!=null?data.author:data.source.name}}"  class="">
+                        <img class="w-6 object-contain" src="../assets/more.png" alt="">
+                    </router-link>
+           </div>
       </div>
     </div>
 </template>

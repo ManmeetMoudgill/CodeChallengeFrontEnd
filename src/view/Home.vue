@@ -41,6 +41,9 @@
           />
           <label class="form-check-label   ml-2 inline-block text-gray-800" for="orderByTitle">Ordina per titolo</label>
         </div>
+
+         
+
       </form>
     </div>
     <News :news="this.$store.state.news" />
@@ -55,30 +58,22 @@
       <h2 class="text-2xl font-bold">Sorry there,no news found</h2>
     </div>
 
+  <div class="flex justify-center mb-3">
     <div
       v-if="this.$store.state.news.length !== 0"
-      class="flex justify-between items-center mb-3"
+      class="flex justify-center items-center mt-2"
     >
-      <button
-        :disabled="this.$store.state.pageNumber == 1"
-        v-if="this.$store.state.pageNumber !== 1"
-        v-on:click="previousPage"
-        class="mt-4 py-2 px-4 text-white text-center rounded-md shadow-md bg-blue-600 hover:bg-blue-500 transition-all delay-150"
-      >
-        Previous
-      </button>
-      <button
-        
-        :disabled="
-          this.$store.state.pageNumber + 1 >
-          Math.ceil(this.$store.state.totalNews / 20)
-        "
-        v-on:click="nextPage"
-        class="mt-4 py-2 px-4 text-white text-center rounded-md shadow-md bg-blue-600 hover:bg-blue-500 transition-all delay-150"
-      >
-        Next
-      </button>
+    <img  
+        v-if="this.$store.state.pageNumber !== 1" class=" w-4 mr-2 hover:scale-105 transition-all delay-100 transform hover:-translate-x-2 cursor-pointer"
+        v-on:click="previousPage" src="../assets/arrow.png" alt="">
+    <img  
+    class="cursor-pointer w-4 ml-2 hover:scale-105 transition-all delay-100 transform hover:translate-x-2"
+        v-on:click="nextPage" src="../assets/right-arrow.png" alt="">
+    
+    
     </div>
+  </div>
+   
   </div>
 </template>
 
