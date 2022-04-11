@@ -7,7 +7,7 @@
 
             
 
-      <img  :src="data.urlToImage?data.urlToImage:'https://image.shutterstock.com/image-vector/breaking-news-background-planet-260nw-667420906.jpgD'" class=" group-hover:scale-105  transform transition-all delay-250 card-img-top h-56 object-cover" alt="Immagine non disponibile" />
+      <img v-on:click="{router.push({name:'SingleNews,params:{name:data.source.name,author:data.author!=null?data.author:data.source.name}})}" :src="data.urlToImage?data.urlToImage:'https://image.shutterstock.com/image-vector/breaking-news-background-planet-260nw-667420906.jpgD'" class=" group-hover:scale-105  transform transition-all delay-250 card-img-top h-56 object-cover" alt="Immagine non disponibile" />
       <div class="card-body">
         <h5 class="card-title font-bold  h-14  mb-3">{{data.title && data.title.substring(0,100)}}...</h5>
 
