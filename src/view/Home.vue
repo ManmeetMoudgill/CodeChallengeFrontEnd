@@ -68,8 +68,7 @@
         Previous
       </button>
       <button
-      v-if="!(this.$store.state.pageNumber + 1 >
-          Math.ceil(this.$store.state.totalNews / 20))"
+        
         :disabled="
           this.$store.state.pageNumber + 1 >
           Math.ceil(this.$store.state.totalNews / 20)
