@@ -9,7 +9,7 @@ import SingleNews from './components/SingleNews.vue'
 // We'll talk about nested routes later.
 const routes = [
   { path: '/', name:"Home",component: Home },
-  { path: '/news/:name',name:"SingleNews",component: SingleNews },
+  { path: '/news/:name/:author',name:"SingleNews",component: SingleNews },
   {path: '/:pathMatch(.*)*', name: 'not-found',redirect: '/'}
 ]
 
