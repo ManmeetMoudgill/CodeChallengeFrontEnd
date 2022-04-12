@@ -119,15 +119,11 @@ const store = createStore({
     },
     async ordinePerTitolo(state, payload) {
       if (payload.orderByTitle === true) {
-        
-        this.state.news.sort((a, b) => a.title.split(/\s+/)[0].replace(/[^a-zA-Z ]/g, "").localeCompare(b.title.split(/\s+/)[0].replace(/[^a-zA-Z ]/g, "")));
         const regex=/^[0-9]/;
-        const result=this.state.news.filter((el)=>{
-          if(regex.test(el.title)===false){
-            return el;
-          }
+        const result=this.state.news.sort((a, b) => a.title.split(/\s+/)[0].replace(/[^a-zA-Z ]/g, "").localeCompare(b.title.split(/\s+/)[0].replace(/[^a-zA-Z ]/g, ""))).filter((el)=>{
+            return regex.test(el.title)===false;
         })
-        this.state.news=result;
+       this.state.news=result;
 
       } else {
 
