@@ -1,6 +1,6 @@
 <template>
     <div class=" w-full flex  customBorder bg-gray-200 overflow-x-hidden">
-       <div class="flex w-1/3  md:w-1/6 z-50 items-center justify-center customBgColor py-1 px-6 text-white font-bold">Top News</div>
+       <div class="flex w-1/3 text-sm sm:text-base  md:w-1/6 z-50 items-center justify-center customBgColor py-1 px-6 text-white font-bold">Top News</div>
        <div class="w-2/3 md:w-5/6 flex items-center">
        <div  class="font-light highlights  ">
             <ul class="flex items-center">

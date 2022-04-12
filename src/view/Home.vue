@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="flex justify-between items-center">
+    <div class="flex justify-between  flex-col sm:flex-row  sm:items-center">
       <h2 class="text-5xl">News</h2>
 
       <form action="" class="flex flex-col  ">
@@ -9,7 +9,7 @@
         
         <div class="">
           <select v-model="selectedSource" @change="sourceChanged($event)"
-            class="  border border-gray-300 px-4 py-1  text-sm font-medium text-gray-700 hover:bg-gray-50  focus:ring-2 focus:ring-offset-2   z-50  mt-2 w-56 rounded-md shadow-md bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+            class="  border  border-gray-300 px-4 py-1  text-sm font-medium text-gray-700 hover:bg-gray-50  focus:ring-2 focus:ring-offset-2   z-50  mt-2 w-full sm:w-56 rounded-md shadow-md bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
             
           >
               <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
@@ -84,7 +84,7 @@
 </template>
 
 <script>
-
+const baseUrl = "http://127.0.0.1:80";
 import News from "../components/News.vue";
 export default {
   name: "Home",
