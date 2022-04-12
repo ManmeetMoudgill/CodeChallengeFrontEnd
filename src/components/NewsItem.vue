@@ -9,11 +9,11 @@
 
       <img v-on:click="imgClicked" :src="data.urlToImage?data.urlToImage:'https://image.shutterstock.com/image-vector/breaking-news-background-planet-260nw-667420906.jpgD'" class=" group-hover:scale-105  transform transition-all delay-250 card-img-top h-56 object-cover" alt="Immagine non disponibile" />
       <div class="card-body">
-        <h5 class="card-title font-bold  h-14  mb-3">{{data.title && data.title.substring(0,100)}}...</h5>
+        <h5 class="card-title font-bold  h-14  mb-3">{{data.title!==null && data.title.substring(0,100)}}...</h5>
 
        
         <p class="card-text mb-3 h-20 overflow-hidden">
-            {{data.description && data.description.substring(0,80)}}...
+            {{data.description!==null && data.description.substring(0,80)}}...
         </p>
            
            
