@@ -125,8 +125,7 @@ const store = createStore({
 
         if (this.state.searchKey != null && this.state.searchKey != undefined) {
           this.dispatch("search");
-        }else if(this.state.filterSource != undefined || this.state.filterSource != null)
-        {
+        }else if((this.state.filterSource != undefined || this.state.filterSource != null) && this.state.filterSource!=="all"){
           this.dispatch("getNewBasedOnSource",{source:this.state.filterSource});
         }else {
           this.dispatch("getNews");
@@ -198,6 +197,7 @@ const store = createStore({
     async getNewBasedOnSource(state, payload) {
       const sourceName = payload.source;
       if (sourceName == "all") {
+        this.state.filterSource =sourceName;
         this.dispatch("getNews");
       } else {
         this.state.filterSource = sourceName;
