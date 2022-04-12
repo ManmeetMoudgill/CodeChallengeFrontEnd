@@ -134,7 +134,7 @@ const store = createStore({
       }
     }, async search(state, payload) {
 
-
+      //created an function which will be called whenenver the search key is changed
       const searchData = async (baseUrl, pageNumber, q) => {
         const dataGotFromBackend = await axios.get(`${baseUrl}/news?&page=${pageNumber}&q=${q}`);
         this.commit('getNews', dataGotFromBackend.data);
