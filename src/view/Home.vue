@@ -2,16 +2,7 @@
   <div class="container">
     <div class="flex justify-between flex-col sm:flex-row sm:items-center">
       <h2 class="text-5xl">News</h2>
-<<<<<<< HEAD
       <form action="" class="flex flex-col">
-=======
-      
-
-      <form action="" class="flex flex-col  ">
-      
-
-        
->>>>>>> bc251ccf41a849ee370c6d20a9b0938cabe98803
         <div class="">
           <select v-model="selectedSource" @change="sourceChanged($event)" class="
               border border-gray-300
