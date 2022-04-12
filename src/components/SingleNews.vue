@@ -19,8 +19,8 @@
       </div>
       <div class="p-4">
         <h2 class="font-bold">{{ news.title }}</h2>
-        <p class="w-4/5 mt-2">{{ news.description }}</p>
-        <p class="my-1">{{news.content.substring(0,100)}}...</p>
+        <p class="w-full sm:w-4/5 mt-2">{{ news.description }}</p>
+        <p class="my-1 w-full sm:w-4/5">{{news.content.substring(0,100)}}...</p>
         <p class="mt-1">
           {{ news.publishedAt && formatDate(news.publishedAt) }}
         </p>
