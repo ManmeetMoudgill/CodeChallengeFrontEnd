@@ -99,7 +99,7 @@ export default {
       source,
       publishedAt,
       url,
-    } = this.$route.params;
+    } = this.$route.query;
     this.news.title = title;
     this.news.description = description;
     this.news.author = author;
@@ -111,7 +111,7 @@ export default {
   },
   created() {
     this.$watch(
-      () => this.$route.params,
+      () => this.$route.params.query,
       () => {
         const {
           author,
@@ -122,7 +122,7 @@ export default {
           source,
           publishedAt,
           url,
-        } = this.$route.params;
+        } = this.$route.query;
         this.news.title = title;
         this.news.description = description;
         this.news.author = author;
