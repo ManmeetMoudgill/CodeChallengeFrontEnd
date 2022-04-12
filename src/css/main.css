@@ -6,3 +6,23 @@
     font-family: 'Roboto', sans-serif;
     
 }
+.highlights{
+   
+    animation:scroll 100s infinite linear;
+    
+}
+.customBgColor{
+    background-color:#D40850;
+}
+.customBorder{
+    border-top:3px solid #D40850;
+}
+
+@keyframes scroll{
+    0%{
+        transform:translateX(0);
+    }
+    100%{
+        transform:translateX(-100%);
+    }
+}
