@@ -34,7 +34,7 @@
         </div>
 
         <div class="flex items-center mt-2">
-          <input type="checkbox" v-on:change="OrderByTitleChanged" v-model="OrderByTitle" name="orderByTitle"
+          <input type="checkbox" @change="OrderByTitleChanged" v-model="OrderByTitle" name="orderByTitle"
             class="w-4 h-4 rounded-md shadow-md" id="orderByTitle" />
           <label class="form-check-label ml-2 inline-block text-gray-800" for="orderByTitle">Order by title</label>
         </div>
@@ -97,6 +97,7 @@ export default {
   },
   methods: {
     OrderByTitleChanged() {
+      this.$store.commit('setOrderChecked', this.OrderByTitle);
       this.$store.dispatch("ordinePerTitolo", {
         orderByTitle: this.OrderByTitle,
       });

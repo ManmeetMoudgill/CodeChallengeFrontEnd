@@ -14,6 +14,7 @@ const store = createStore({
       pageNumber: 1,
       baseUrl: "http://localhost:8080",
       news: [],
+      orderChecked:false,
       totalNews: null,
       newsSources: [],
       searchKey: null,
@@ -33,7 +34,9 @@ const store = createStore({
       state.isActive = false
 
     },
-    IncrementWidth(state) {
+    setOrderChecked(state, value) {
+      state.orderChecked=value;
+    },IncrementWidth(state) {
 
       while (state.width < 100) {
         state.width = state.width + 25;
@@ -97,6 +100,12 @@ const store = createStore({
         this.dispatch("search");
       } else if (this.state.filterSource != undefined || this.state.filterSource != null) {
         this.dispatch("getNewBasedOnSource",{source:this.state.filterSource});
+      }else if(this.state.orderChecked===true){
+        this.dispatch('getNews');
+        setTimeout(()=>{
+          this.dispatch("ordinePerTitolo");
+
+        },1000)
       }
       else {
         this.dispatch('getNews');
@@ -111,14 +120,22 @@ const store = createStore({
         this.dispatch("search");
       } else if (this.state.filterSource != undefined || this.state.filterSource != null) {
         this.dispatch("getNewBasedOnSource",{source:this.state.filterSource});
-      } else {
+      }else if(this.state.orderChecked===true){
+        this.dispatch('getNews');
+        setTimeout(()=>{
+          this.dispatch("ordinePerTitolo");
+
+        },1000)
+      }else {
         this.dispatch('getNews');
 
       }
 
     },
     async ordinePerTitolo(state, payload) {
-      if (payload.orderByTitle === true) {
+     
+      if (payload?.orderByTitle === true || this.state.orderChecked === true) {
+        console.log("INSIDE THE MAIN IF STATEMENT");
         const regex=/^[0-9]/;
         const result=this.state.news.sort((a, b) => a.title.split(/\s+/)[0].replace(/[^a-zA-Z ]/g, "").localeCompare(b.title.split(/\s+/)[0].replace(/[^a-zA-Z ]/g, ""))).filter((el)=>{
             return regex.test(el.title)===false;
@@ -128,8 +145,10 @@ const store = createStore({
       } else {
 
         if (this.state.searchKey != null && this.state.searchKey != undefined) {
+          console.log("INSIDE THE IF STATEMENT");
           this.dispatch("search");
         }else if((this.state.filterSource != undefined || this.state.filterSource != null) && this.state.filterSource!=="all"){
+          console.log("INSIDE THE ELSE IF STATEMENT")
           this.dispatch("getNewBasedOnSource",{source:this.state.filterSource});
         }else {
           this.dispatch("getNews");
