@@ -107,7 +107,14 @@ const store = createStore({
           filteredData.sort((a, b) => a.title.split(/\s+/)[0].replace(/[^a-zA-Z ]/g, "").localeCompare(b.title.split(/\s+/)[0].replace(/[^a-zA-Z ]/g, "")));
 
         }else {
-          this.dispatch("getNews");
+          
+          if(this.state.searchKey!=null && this.state.searchKey!=undefined){
+            console.log("inside the search statemenet");
+            this.dispatch("search");
+          }else{
+            this.dispatch("getNews");
+
+          }
         }
         
         
