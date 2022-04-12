@@ -18,7 +18,7 @@
            
            
            <div class="flex items-center justify-end">
-                    <router-link :to="{name:'SingleNews',params:{author:data?.author,publishedAt:data?.publishedAt,urlToImage:data?.urlToImage,content:data?.content,description:data?.description,title:data?.title,source:data?.source.name,url:data?.url}}"  class="">
+                    <router-link :to="{name:'SingleNews',query:{author:data?.author,publishedAt:data?.publishedAt,urlToImage:data?.urlToImage,content:data?.content,description:data?.description,title:data?.title,source:data?.source.name,url:data?.url}}"  class="">
                         <img class="w-6 hover:rotate-180 transform transition-all delay-100  object-contain" src="../assets/more.png" alt="">
                     </router-link>
            </div>
@@ -43,7 +43,7 @@ export default {
             return new Date(dateInUtcFormat).getDate()+"/"+new Date(dateInUtcFormat).getMonth()+"/"+new Date(dateInUtcFormat).getFullYear();
         },
         imgClicked(){
-            this.$router.push({name:'SingleNews',params:{author:this.data?.author,publishedAt:this.data?.publishedAt,urlToImage:this.data?.urlToImage,content:this.data?.content,description:this.data?.description,title:this.data?.title,source:this.data?.source.name,url:this.data?.url}});
+            this.$router.push({name:'SingleNews',query:{author:this.data?.author,publishedAt:this.data?.publishedAt,urlToImage:this.data?.urlToImage,content:this.data?.content,description:this.data?.description,title:this.data?.title,source:this.data?.source.name,url:this.data?.url}});
         }
         
     },
