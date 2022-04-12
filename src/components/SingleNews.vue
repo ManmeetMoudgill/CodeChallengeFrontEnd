@@ -13,19 +13,19 @@
       <div class="overflow-hidden">
         <img
           class="object-cover cursor-pointer hover:scale-105 transform hover:rotate-2 transition-all h-auto  rounded-l-md"
-          :src="news.urlToImage"
+          :src="news.urlToImage &&news.urlToImage"
           alt=""
         />
       </div>
       <div class="p-4">
-        <h2 class="font-bold">{{ news.title }}</h2>
-        <p class="w-full sm:w-4/5 mt-2">{{ news.description }}</p>
-        <p class="my-1 w-full sm:w-4/5">{{news.content.substring(0,100)}}...</p>
+        <h2 class="font-bold">{{ news.title?news.title:'' }}</h2>
+        <p class="w-full sm:w-4/5 mt-2">{{ news.description?news.description:'' }}</p>
+        <p class="my-1 w-full sm:w-4/5">{{news.content && news.content.substring(0,100)}}...</p>
         <p class="mt-1">
           {{ news.publishedAt && formatDate(news.publishedAt) }}
         </p>
         <p class="mt-1 mb-3">{{ news.author }}</p>
-        <a :href="news.url" target="_blank" class="relative cursor-pointer">
+        <a :href="news.url?news.url:''" target="_blank" class="relative cursor-pointer">
           <img
             v-on:mouseleave="hoverImg = false"
             v-on:mouseenter="hoverImg = true"

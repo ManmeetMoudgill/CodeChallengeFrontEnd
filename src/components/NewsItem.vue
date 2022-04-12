@@ -1,8 +1,8 @@
 <template>
     <div class="group  relative my-4 rounded-xl shadow-md  overflow-hidden transition-all delay-150 transform ">
         <div class="absolute bottom-2 left-4 flex flex-col">
-            <span class="text-black font-medium">{{formatDate(data.publishedAt)}}</span>
-            <span class="text-base font-medium  z-50 text-black">{{data.author}}</span>
+            <span class="text-black font-medium">{{data.publishedAt &&  formatDate(data.publishedAt)}}</span>
+            <span class="text-base font-medium  z-50 text-black">{{data.author ?data.author:''}}</span>
         </div>
 
             
