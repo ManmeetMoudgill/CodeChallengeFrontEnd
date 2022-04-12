@@ -10,9 +10,9 @@
       v-if="news !== null"
       class="grid md:grid-cols-2 grid-cols-1 shadow-lg rounded-xl"
     >
-      <div class="">
+      <div class="overflow-hidden">
         <img
-          class="object-cover h-auto  rounded-l-md"
+          class="object-cover cursor-pointer hover:scale-105 transform hover:rotate-2 transition-all h-auto  rounded-l-md"
           :src="news.urlToImage"
           alt=""
         />
