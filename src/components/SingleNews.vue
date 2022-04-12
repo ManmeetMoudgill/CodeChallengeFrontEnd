@@ -5,6 +5,7 @@
                 <img class="cursor-pointer" src="../assets/back.png" alt="">
             </a>
         </div>
+        
         <div v-if="news!==null" class="grid md:grid-cols-2 grid-cols-1 shadow-lg rounded-xl">
             <div class="">
                 <img class="object-contain h-auto rounded-l-md " :src="news.urlToImage" alt="">
@@ -21,17 +22,31 @@
             </div>
             
         </div>
+        <div v-if="news===null" class="flex justify-center">
+            <h3 class="font-bold text-3xl">Opps! something went wrong</h3>
+            
+        </div>
     </div>
 </template>
 
 
 <script>
-import axios from 'axios';
 export default {
     name:"SingleNews",
     data(){
         return {
-            news:null,
+            news:{
+                title:"",
+                description:"",
+                urlToImage:"",
+                author:"",
+                publishedAt:"",
+                url:"",
+                content:"",
+                source:{
+                    name:""
+                }
+            },
             hoverImg:false
         }
     },
@@ -42,24 +57,22 @@ export default {
         
     },
     mounted(){
-        this.$store.commit("showProgressBar");
-        axios.get(`${this.$store.state.baseUrl}/singleNews/${this.$route.params.name}?author=${this.$route.params.author}`).then((res)=>{
-            this.news=res.data.news;
-           
-            this.$store.commit("hideProgressBar");
-        }).catch((err)=>{
-            console.log(err);
-        })
-    
+        const {author,urlToImage,content,description,title,source}=this.$route.params;
+        this.news.title=title;
+        this.news.description=description;
+        this.news.author=author;
+        this.news.urlToImage=urlToImage;
+        this.news.content=content;
+        this.news.source=source;
     },created(){
-        this.$watch(()=>this.$route.params.name,()=>{
-            this.$store.commit("showProgressBar");
-            axios.get(`${this.$store.state.baseUrl}/singleNews/${this.$route.params.name}?author=${this.$route.params.author}`).then((res)=>{
-                this.news=res.data.news;
-                this.$store.commit("hideProgressBar");
-            }).catch((err)=>{
-                console.log(err);
-            })
+        this.$watch(()=>this.$route.params,()=>{
+             const {author,urlToImage,content,description,title,source}=this.$route.params;
+             this.news.title=title;
+             this.news.description=description;
+             this.news.author=author;
+             this.news.urlToImage=urlToImage;
+             this.news.content=content;
+             this.news.source=source;
         })
     }
 }

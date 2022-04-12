@@ -7,7 +7,7 @@
 
             
 
-      <img v-on:click="imgClicked(data.source.name,data.author)" :src="data.urlToImage?data.urlToImage:'https://image.shutterstock.com/image-vector/breaking-news-background-planet-260nw-667420906.jpgD'" class=" group-hover:scale-105  transform transition-all delay-250 card-img-top h-56 object-cover" alt="Immagine non disponibile" />
+      <img v-on:click="imgClicked(data.source.name,data?.author)" :src="data.urlToImage?data.urlToImage:'https://image.shutterstock.com/image-vector/breaking-news-background-planet-260nw-667420906.jpgD'" class=" group-hover:scale-105  transform transition-all delay-250 card-img-top h-56 object-cover" alt="Immagine non disponibile" />
       <div class="card-body">
         <h5 class="card-title font-bold  h-14  mb-3">{{data.title && data.title.substring(0,100)}}...</h5>
 
@@ -18,7 +18,7 @@
            
            
            <div class="flex items-center justify-end">
-                    <router-link :to="{name:'SingleNews',params:{name:data.source.name,author:data.author!=null?data.author:data.source.name}}"  class="">
+                    <router-link :to="{name:'SingleNews',params:{author:data?.author,urlToImage:data?.urlToImage,content:data?.content,description:data?.description,title:data?.title,source:data?.source.name}}"  class="">
                         <img class="w-6 hover:rotate-180 transform transition-all delay-100  object-contain" src="../assets/more.png" alt="">
                     </router-link>
            </div>

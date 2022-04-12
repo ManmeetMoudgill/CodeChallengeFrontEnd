@@ -104,7 +104,7 @@ const store = createStore({
         setTimeout(() => {
           this.dispatch("ordinePerTitolo");
 
-        }, 1000)
+        }, 1500)
       }
       else {
         this.dispatch('getNews');
@@ -123,7 +123,7 @@ const store = createStore({
         this.dispatch('getNews');
         setTimeout(() => {
           this.dispatch("ordinePerTitolo");
-        }, 1000)
+        }, 1500)
       } else {
         this.dispatch('getNews');
 
