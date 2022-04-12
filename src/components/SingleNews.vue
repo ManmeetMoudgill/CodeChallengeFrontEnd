@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col mb-3">
     <div class="mb-3">
       <a v-on:click="this.$router.go(-1)" class="">
         <img class="cursor-pointer" src="../assets/back.png" alt="" />
@@ -12,7 +12,7 @@
     >
       <div class="">
         <img
-          class="object-contain h-auto rounded-l-md"
+          class="object-cover h-auto  rounded-l-md"
           :src="news.urlToImage"
           alt=""
         />
@@ -103,7 +103,7 @@ export default {
     this.news.title = title;
     this.news.description = description;
     this.news.author = author;
-    this.news.urlToImage = urlToImage;
+    this.news.urlToImage = urlToImage ? urlToImage : "https://image.shutterstock.com/image-vector/breaking-news-background-planet-260nw-667420906.jpgD";
     this.news.content = content;
     this.news.url = url;
     this.news.source = source;
@@ -126,7 +126,7 @@ export default {
         this.news.title = title;
         this.news.description = description;
         this.news.author = author;
-        this.news.urlToImage = urlToImage;
+       this.news.urlToImage = urlToImage ? urlToImage : "https://image.shutterstock.com/image-vector/breaking-news-background-planet-260nw-667420906.jpgD";
         this.news.content = content;
         this.news.url = url;
         this.news.source = source;
