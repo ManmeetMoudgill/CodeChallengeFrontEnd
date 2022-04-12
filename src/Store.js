@@ -96,7 +96,7 @@ const store = createStore({
       if (this.state.searchKey != undefined || this.state.searchKey != null) {
         this.dispatch("search");
       } else if (this.state.filterSource != undefined || this.state.filterSource != null) {
-        this.dispatch("filterBySource");
+        this.dispatch("getNewBasedOnSource",{source:this.state.filterSource});
       }
       else {
         this.dispatch('getNews');
@@ -110,7 +110,7 @@ const store = createStore({
       if (this.state.searchKey != null && this.state.searchKey != undefined) {
         this.dispatch("search");
       } else if (this.state.filterSource != undefined || this.state.filterSource != null) {
-        this.dispatch("filterBySource");
+        this.dispatch("getNewBasedOnSource",{source:this.state.filterSource});
       } else {
         this.dispatch('getNews');
 
@@ -125,7 +125,10 @@ const store = createStore({
 
         if (this.state.searchKey != null && this.state.searchKey != undefined) {
           this.dispatch("search");
-        } else {
+        }else if(this.state.filterSource != undefined || this.state.filterSource != null)
+        {
+          this.dispatch("getNewBasedOnSource",{source:this.state.filterSource});
+        }else {
           this.dispatch("getNews");
 
         }
