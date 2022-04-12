@@ -2,7 +2,7 @@
   <div class="container">
     <div class="flex justify-between  flex-col sm:flex-row  sm:items-center">
       <h2 class="text-5xl">News</h2>
-      {{this.$store.state.messageAlert}}
+      
 
       <form action="" class="flex flex-col  ">
       
