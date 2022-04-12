@@ -14,7 +14,7 @@ const store = createStore({
       pageNumber: 1,
       baseUrl: "http://localhost:8080",
       news: [],
-      orderChecked:false,
+      orderChecked: false,
       totalNews: null,
       newsSources: [],
       searchKey: null,
@@ -30,13 +30,12 @@ const store = createStore({
 
     },
     hideProgressBar(state) {
-
       state.isActive = false
 
     },
     setOrderChecked(state, value) {
-      state.orderChecked=value;
-    },IncrementWidth(state) {
+      state.orderChecked = value;
+    }, IncrementWidth(state) {
 
       while (state.width < 100) {
         state.width = state.width + 25;
@@ -99,13 +98,13 @@ const store = createStore({
       if (this.state.searchKey != undefined || this.state.searchKey != null) {
         this.dispatch("search");
       } else if (this.state.filterSource != undefined || this.state.filterSource != null) {
-        this.dispatch("getNewBasedOnSource",{source:this.state.filterSource});
-      }else if(this.state.orderChecked===true){
+        this.dispatch("getNewBasedOnSource", { source: this.state.filterSource });
+      } else if (this.state.orderChecked === true) {
         this.dispatch('getNews');
-        setTimeout(()=>{
+        setTimeout(() => {
           this.dispatch("ordinePerTitolo");
 
-        },1000)
+        }, 1000)
       }
       else {
         this.dispatch('getNews');
@@ -119,43 +118,42 @@ const store = createStore({
       if (this.state.searchKey != null && this.state.searchKey != undefined) {
         this.dispatch("search");
       } else if (this.state.filterSource != undefined || this.state.filterSource != null) {
-        this.dispatch("getNewBasedOnSource",{source:this.state.filterSource});
-      }else if(this.state.orderChecked===true){
+        this.dispatch("getNewBasedOnSource", { source: this.state.filterSource });
+      } else if (this.state.orderChecked === true) {
         this.dispatch('getNews');
-        setTimeout(()=>{
+        setTimeout(() => {
           this.dispatch("ordinePerTitolo");
-        },1000)
-      }else {
+        }, 1000)
+      } else {
         this.dispatch('getNews');
 
       }
 
     },
     async ordinePerTitolo(state, payload) {
-     
+
       if (payload?.orderByTitle === true || this.state.orderChecked === true) {
-        console.log("INSIDE THE MAIN IF STATEMENT");
-        const regex=/^[0-9]/;
-        const result=this.state.news.sort((a, b) => a.title.split(/\s+/)[0].replace(/[^a-zA-Z ]/g, "").localeCompare(b.title.split(/\s+/)[0].replace(/[^a-zA-Z ]/g, ""))).filter((el)=>{
-            return regex.test(el.title)===false;
+
+        const regex = /^[0-9]/;
+        const result = this.state.news.sort((a, b) => a.title.split(/\s+/)[0].replace(/[^a-zA-Z ]/g, "").localeCompare(b.title.split(/\s+/)[0].replace(/[^a-zA-Z ]/g, ""))).filter((el) => {
+          return regex.test(el.title) === false;
         })
-       this.state.news=result;
+        this.state.news = result;
 
       } else {
 
         if (this.state.searchKey != null && this.state.searchKey != undefined) {
-          console.log("INSIDE THE IF STATEMENT");
           this.dispatch("search");
-        }else if((this.state.filterSource != undefined || this.state.filterSource != null) && this.state.filterSource!=="all"){
-          console.log("INSIDE THE ELSE IF STATEMENT")
-          this.dispatch("getNewBasedOnSource",{source:this.state.filterSource});
-        }else {
+        } else if ((this.state.filterSource != undefined || this.state.filterSource != null) && this.state.filterSource !== "all") {
+          this.dispatch("getNewBasedOnSource", { source: this.state.filterSource });
+        } else {
           this.dispatch("getNews");
 
         }
       }
     }, async search(state, payload) {
 
+      
       //created an function which will be called whenenver the search key is changed
       const searchData = async (baseUrl, pageNumber, q) => {
         const dataGotFromBackend = await axios.get(`${baseUrl}/news?&page=${pageNumber}&q=${q}`);
@@ -219,7 +217,7 @@ const store = createStore({
     async getNewBasedOnSource(state, payload) {
       const sourceName = payload.source;
       if (sourceName == "all") {
-        this.state.filterSource =sourceName;
+        this.state.filterSource = sourceName;
         this.dispatch("getNews");
       } else {
         this.state.filterSource = sourceName;
