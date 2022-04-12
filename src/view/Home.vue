@@ -85,7 +85,7 @@
 </template>
 
 <script>
-const baseUrl = "http://127.0.0.1:80";
+
 import News from "../components/News.vue";
 export default {
   name: "Home",
