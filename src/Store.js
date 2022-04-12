@@ -12,7 +12,7 @@ const store = createStore({
       width: 0,
       isActive: false,
       pageNumber: 1,
-      baseUrl: "http://localhost:8080",
+      baseUrl: "https://manmeet-news.herokuapp.com",
       news: [],
       totalNews: null,
       newsSources: [],
