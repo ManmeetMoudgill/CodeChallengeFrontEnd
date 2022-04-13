@@ -2,7 +2,7 @@
   <div class="container">
     <div class="flex justify-between flex-col sm:flex-row sm:items-center">
       <h2 class="text-5xl">News</h2>
-      <form action="" class="flex flex-col">
+      <form v-if="this.$store.state.news.length>0" action="" class="flex flex-col">
         <div class="">
           <select v-model="selectedSource" @change="sourceChanged($event)" class="
               border border-gray-300
